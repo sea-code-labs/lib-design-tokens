@@ -1,0 +1,269 @@
+image: seacodelabs/node20-chromium:latest
+
+pipelines:
+  pull-requests:
+    # Pull request from feature-* to develop
+    'feature-*':
+      - step:
+          name: Env
+          script:
+            - printenv
+
+      - step:
+          # Validate that the branch name starts with 'feature-'
+          name: Validate Branch Name
+          script:
+            - echo "Validating branch name..."
+            - |
+              # Ensure the branch name starts with 'feature-'
+              if [[ ! "$BITBUCKET_BRANCH" =~ ^feature- ]]; then
+                echo "Error: Branch name must start with 'feature-'."
+                exit 1
+              fi
+
+              echo "Branch name validation passed."
+
+      - step:
+          # Check if the source branch of the PR is 'develop' when merging into 'main'
+          name: Check PR Source for Main
+          script:
+            - echo "Checking if PR target is 'main'..."
+            - |
+              # Ensure the destination branch is 'main' and the source branch is 'develop'
+              if [ "$BITBUCKET_PR_DESTINATION_BRANCH" = "main" ] && [ "$BITBUCKET_BRANCH" != "develop" ]; then
+                echo "Error: PR to 'main' must come from 'develop'."
+                exit 1
+              fi
+
+      - step:
+          # Install dependencies and save cache for subsequent steps
+          name: Install Dependencies and Cache
+          caches:
+            - node
+          script:
+            - echo "Installing dependencies..."
+            - npm install
+
+      - step:
+          # Run tests to validate the changes in feature branch
+          name: Run Tests
+          caches:
+            - node
+          script:
+            - echo "Running tests..."
+            - npx ng test --watch=false
+
+    # Pull request from develop to main
+    develop:
+      - step:
+          name: Env
+          script:
+            - printenv
+
+      - step:
+          # Check if the source branch of the PR is 'develop' when merging into 'main'
+          name: Check PR Source for Main
+          script:
+            - echo "Checking if PR source is 'develop'..."
+            - |
+              # Ensure the destination branch is 'main' and the source branch is 'develop'
+              if [ "$BITBUCKET_PR_DESTINATION_BRANCH" = "main" ] && [ "$BITBUCKET_BRANCH" != "develop" ]; then
+                echo "Error: PR to 'main' must come from 'develop'."
+                exit 1
+              else
+                echo "PR source branch is 'develop'."
+              fi
+
+      - step:
+          # Install dependencies and save cache for subsequent steps
+          name: Install Dependencies and Cache
+          caches:
+            - node
+          script:
+            - echo "Installing dependencies..."
+            - npm install
+
+      - step:
+          # Run tests to validate the merge from develop to main
+          name: Run Tests
+          caches:
+            - node
+          script:
+            - echo "Running tests..."
+            - npx ng test --watch=false
+
+  branches:
+    # Branch feature-* (push)
+    feature-*:
+      - step:
+          name: Env
+          script:
+            - printenv
+
+      - step:
+          # Validate that the branch name starts with 'feature-'
+          name: Validate Branch Name
+          script:
+            - echo "Validating branch name..."
+            - |
+              # Ensure the branch name starts with 'feature-'
+              if [[ ! "$BITBUCKET_BRANCH" =~ ^feature- ]]; then
+                echo "Error: Branch name must start with 'feature-'."
+                exit 1
+              fi
+
+              echo "Branch name validation passed."
+
+      - step:
+          # Install dependencies and save cache for subsequent steps
+          name: Install Dependencies and Cache
+          caches:
+            - node
+          script:
+            - echo "Installing dependencies..."
+            - npm install
+
+      - step:
+          # Run tests to validate the changes on the feature branch
+          name: Run Tests
+          caches:
+            - node
+          script:
+            - echo "Running tests..."
+            - npx ng test --watch=false
+
+    develop:
+      - step:
+          name: Env
+          script:
+            - printenv
+
+      - step:
+          # Install dependencies and save cache for subsequent steps
+          name: Install Dependencies and Cache
+          caches:
+            - node
+          script:
+            - echo "Installing dependencies..."
+            - npm install
+
+      - step:
+          # Run tests to validate the changes on the develop branch
+          name: Run Tests
+          caches:
+            - node
+          script:
+            - echo "Running tests..."
+            - npx ng test --watch=false
+
+      - step:
+          name: Delete merged feature branch
+          script:
+            - git fetch origin
+            - |
+              echo "Current branch is -> $BITBUCKET_BRANCH"
+              recent_merge_info=$(git log --first-parent --merges $BITBUCKET_BRANCH -1 --oneline)
+              source_branch=$(echo "$recent_merge_info" | grep -o 'feature-[^ ]*')
+
+              if [ -z "$source_branch" ]; then
+                echo "No merged feature branch found."
+                exit 1
+              else
+                echo "Found merged feature branch -> $source_branch. Deleting it..."
+                git push origin --delete "$source_branch"
+                echo "Branch $source_branch has been deleted from origin."
+              fi
+
+      - step:
+          # Sync the Bitbucket repository with the GitHub mirror
+          name: Sync GitHub Mirror
+          clone:
+            enabled: false
+          script:
+            - echo "Cloning Bitbucket repository as a bare clone..."
+            # Perform a bare clone of the Bitbucket repository
+            - git clone --bare git@bitbucket.org:sea-code-labs/template-angular-lib.git
+            - cd template-angular-lib.git
+            - echo "Pushing to GitHub mirror..."
+            # Push all refs to the GitHub mirror
+            - git push --mirror git@github.com:sea-code-labs/template-angular-lib.git
+
+      - step:
+          name: Build & Publish Dev
+          script:
+            - npm config set @sea-code-themes:registry https://registry.npmjs.org/
+            - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+            - npm install -g @angular/cli semver
+            - npm install
+            - apt-get update && apt-get install -y jq
+            - |
+              find projects/libs -maxdepth 1 -mindepth 1 -type d | while read -r lib; do
+                [ -f "$lib/package.json" ] || continue
+                cd "$lib" || exit
+                npm install
+                ng build --configuration production
+                npm version prerelease --preid=dev --no-git-tag-version
+                npm publish --access public --tag dev
+
+                cd - || exit
+                sleep 10
+              done
+
+    main:
+      - step:
+          name: Env
+          script:
+            - printenv
+
+      - step:
+          # Install dependencies and save cache for subsequent steps
+          name: Install Dependencies and Cache
+          caches:
+            - node
+          script:
+            - echo "Installing dependencies..."
+            - npm install
+
+      - step:
+          # Run tests to validate the changes on the main branch
+          name: Run Tests
+          caches:
+            - node
+          script:
+            - echo "Running tests..."
+            - npx ng test --watch=false
+
+      - step:
+          # Sync the Bitbucket repository with the GitHub mirror
+          name: Sync GitHub Mirror
+          clone:
+            enabled: false
+          script:
+            - echo "Cloning Bitbucket repository as a bare clone..."
+            # Perform a bare clone of the Bitbucket repository
+            - git clone --bare git@bitbucket.org:sea-code-labs/template-angular-lib.git
+            - cd template-angular-lib.git
+            - echo "Pushing to GitHub mirror..."
+            # Push all refs to the GitHub mirror
+            - git push --mirror git@github.com:sea-code-labs/template-angular-lib.git
+
+      - step:
+          name: Build & Publish Prod
+          script:
+            - npm config set @sea-code-themes:registry https://registry.npmjs.org/
+            - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+            - apt-get update && apt-get install -y jq
+            - npm install
+            - npm install -g @angular/cli
+            - |
+              find projects/libs -maxdepth 1 -mindepth 1 -type d | while read -r lib; do
+                [ -f "$lib/package.json" ] || continue
+                cd "$lib" || exit
+                npm install
+                ng build --configuration production
+                npm version patch --no-git-tag-version
+                npm publish --access public
+
+                cd - || exit
+                sleep 10
+              done
