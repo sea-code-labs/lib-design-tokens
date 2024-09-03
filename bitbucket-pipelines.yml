@@ -51,7 +51,7 @@ pipelines:
             - node
           script:
             - echo "Running tests..."
-            - npx ng test --watch=false
+            - npx ng test
 
     # Pull request from develop to main
     develop:
@@ -90,7 +90,7 @@ pipelines:
             - node
           script:
             - echo "Running tests..."
-            - npx ng test --watch=false
+            - npx ng test
 
   branches:
     # Branch feature-* (push)
@@ -130,7 +130,7 @@ pipelines:
             - node
           script:
             - echo "Running tests..."
-            - npx ng test --watch=false
+            - npx ng test
 
     develop:
       - step:
@@ -154,7 +154,7 @@ pipelines:
             - node
           script:
             - echo "Running tests..."
-            - npx ng test --watch=false
+            - npx ng test
 
       - step:
           name: Delete merged feature branch
@@ -231,7 +231,7 @@ pipelines:
             - node
           script:
             - echo "Running tests..."
-            - npx ng test --watch=false
+            - npx ng test
 
       - step:
           # Sync the Bitbucket repository with the GitHub mirror
