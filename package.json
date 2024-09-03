@@ -1,5 +1,5 @@
 {
-  "name": "template-angular-lib",
+  "name": "lib-design-tokens",
   "version": "1800.0.0",
   "scripts": {
     "-----BASIC-----": "exit 0",
