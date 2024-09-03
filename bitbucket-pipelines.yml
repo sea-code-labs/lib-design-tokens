@@ -50,8 +50,14 @@ pipelines:
           caches:
             - node
           script:
-            - echo "Running tests..."
-            - npx ng test --watch=false
+            - echo "Checking for .spec.ts files in the projects directory..."
+            - |
+              if find projects/ -name '*.spec.ts' | grep . > /dev/null; then
+                echo ".spec.ts files found. Running tests..."
+                npx ng test --watch=false
+              else
+                echo "No .spec.ts files found. Skipping tests."
+              fi
 
     # Pull request from develop to main
     develop:
@@ -89,8 +95,13 @@ pipelines:
           caches:
             - node
           script:
-            - echo "Running tests..."
-            - npx ng test --watch=false
+            - |
+              if find projects/ -name '*.spec.ts' | grep . > /dev/null; then
+                echo ".spec.ts files found. Running tests..."
+                npx ng test --watch=false
+              else
+                echo "No .spec.ts files found. Skipping tests."
+              fi
 
   branches:
     # Branch feature-* (push)
@@ -129,8 +140,13 @@ pipelines:
           caches:
             - node
           script:
-            - echo "Running tests..."
-            - npx ng test --watch=false
+            - |
+              if find projects/ -name '*.spec.ts' | grep . > /dev/null; then
+                echo ".spec.ts files found. Running tests..."
+                npx ng test --watch=false
+              else
+                echo "No .spec.ts files found. Skipping tests."
+              fi
 
     develop:
       - step:
@@ -153,8 +169,13 @@ pipelines:
           caches:
             - node
           script:
-            - echo "Running tests..."
-            - npx ng test --watch=false
+            - |
+              if find projects/ -name '*.spec.ts' | grep . > /dev/null; then
+                echo ".spec.ts files found. Running tests..."
+                npx ng test --watch=false
+              else
+                echo "No .spec.ts files found. Skipping tests."
+              fi
 
       - step:
           name: Delete merged feature branch
@@ -182,11 +203,11 @@ pipelines:
           script:
             - echo "Cloning Bitbucket repository as a bare clone..."
             # Perform a bare clone of the Bitbucket repository
-            - git clone --bare git@bitbucket.org:sea-code-labs/template-angular-lib.git
-            - cd template-angular-lib.git
+            - git clone --bare git@bitbucket.org:sea-code-labs/lib-design-tokens.git
+            - cd lib-design-tokens.git
             - echo "Pushing to GitHub mirror..."
             # Push all refs to the GitHub mirror
-            - git push --mirror git@github.com:sea-code-labs/template-angular-lib.git
+            - git push --mirror git@github.com:sea-code-labs/lib-design-tokens.git
 
       - step:
           name: Build & Publish Dev
@@ -230,8 +251,13 @@ pipelines:
           caches:
             - node
           script:
-            - echo "Running tests..."
-            - npx ng test --watch=false
+            - |
+              if find projects/ -name '*.spec.ts' | grep . > /dev/null; then
+                echo ".spec.ts files found. Running tests..."
+                npx ng test --watch=false
+              else
+                echo "No .spec.ts files found. Skipping tests."
+              fi
 
       - step:
           # Sync the Bitbucket repository with the GitHub mirror
@@ -241,11 +267,11 @@ pipelines:
           script:
             - echo "Cloning Bitbucket repository as a bare clone..."
             # Perform a bare clone of the Bitbucket repository
-            - git clone --bare git@bitbucket.org:sea-code-labs/template-angular-lib.git
-            - cd template-angular-lib.git
+            - git clone --bare git@bitbucket.org:sea-code-labs/lib-design-tokens.git
+            - cd lib-design-tokens.git
             - echo "Pushing to GitHub mirror..."
             # Push all refs to the GitHub mirror
-            - git push --mirror git@github.com:sea-code-labs/template-angular-lib.git
+            - git push --mirror git@github.com:sea-code-labs/lib-design-tokens.git
 
       - step:
           name: Build & Publish Prod
