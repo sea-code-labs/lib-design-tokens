@@ -4,5 +4,9 @@
   "dependencies": {
     "tslib": "~2.7.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    "./styles": "./src/styles/colors.scss"
+  },
+  "style": "./src/styles/colors.scss"
 }

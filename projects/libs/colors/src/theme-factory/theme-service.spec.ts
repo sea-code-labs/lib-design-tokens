@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 // @ts-nocheck
 
 import { TestBed } from '@angular/core/testing';
@@ -8,11 +9,17 @@ import { defaultLightTheme } from './themes/default-light.theme';
 
 describe('ThemeService', (): void => {
   let service: ThemeService;
+  let originalMatchMedia: typeof window.matchMedia;
 
   beforeEach((): void => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(ThemeService);
     sessionStorage.clear();
+    originalMatchMedia = window.matchMedia;
+  });
+
+  afterEach((): void => {
+    window.matchMedia = originalMatchMedia;
   });
 
   it('should apply the dark theme if saved in sessionStorage', (): void => {
@@ -30,24 +37,39 @@ describe('ThemeService', (): void => {
   });
 
   it('should apply the default light theme if no theme is saved in sessionStorage', (): void => {
+    window.matchMedia = (query: string): MediaQueryList =>
+      ({
+        matches: query === '(prefers-color-scheme: dark)' ? false : false,
+        media: query,
+        onchange: null,
+        addListener: (): void => {},
+        removeListener: (): void => {},
+      }) as unknown as MediaQueryList;
     spyOn(service, 'applyTheme').and.callThrough();
     service.applyUserPreferredTheme();
     expect(service.applyTheme).toHaveBeenCalledWith(defaultLightTheme);
   });
 
-  it('should set and save the dark theme correctly', (): void => {
+  it('should apply the default dark theme if system prefers dark mode and no theme is saved in sessionStorage', (): void => {
+    window.matchMedia = (query: string): MediaQueryList =>
+      ({
+        matches: query === '(prefers-color-scheme: dark)',
+        media: query,
+        onchange: null,
+        addListener: (): void => {},
+        removeListener: (): void => {},
+      }) as unknown as MediaQueryList;
     spyOn(service, 'applyTheme').and.callThrough();
-    service.setUserPreferredTheme(defaultDarkTheme.name);
-
+    service.applyUserPreferredTheme();
     expect(service.applyTheme).toHaveBeenCalledWith(defaultDarkTheme);
-    expect(sessionStorage.getItem('userTheme')).toBe(defaultDarkTheme.name);
   });
 
-  it('should set and save the light theme correctly', (): void => {
+  it('should set user preferred theme and save it to sessionStorage', (): void => {
     spyOn(service, 'applyTheme').and.callThrough();
-    service.setUserPreferredTheme(defaultLightTheme.name);
-    expect(service.applyTheme).toHaveBeenCalledWith(defaultLightTheme);
-    expect(sessionStorage.getItem('userTheme')).toBe(defaultLightTheme.name);
+    spyOn(sessionStorage, 'setItem').and.callThrough();
+    service.setUserPreferredTheme(defaultDarkTheme.name);
+    expect(service.applyTheme).toHaveBeenCalledWith(defaultDarkTheme);
+    expect(sessionStorage.setItem).toHaveBeenCalledWith('userTheme', defaultDarkTheme.name);
   });
 
   it('should save the theme to sessionStorage', (): void => {

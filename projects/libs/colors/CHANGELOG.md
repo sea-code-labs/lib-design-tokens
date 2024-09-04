@@ -13,6 +13,7 @@
 ### **Changes**
 
 - Create a service to manage and apply theme changes.
+- Declare light and dark theme.
 
 ###
 
