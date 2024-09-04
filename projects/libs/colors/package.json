@@ -1,0 +1,12 @@
+{
+  "name": "@sea-code-themes/colors",
+  "version": "1.0.0",
+  "dependencies": {
+    "tslib": "~2.7.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    "./styles": "./src/styles/colors.scss"
+  },
+  "style": "./src/styles/colors.scss"
+}

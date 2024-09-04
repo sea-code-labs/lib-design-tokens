@@ -22,6 +22,7 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
+      "colors": ["./dist/colors"],
       "test-lib": ["./dist/test-lib"],
       "test-lib2": ["./dist/test-lib2", "./dist/test-lib2"]
     }
