@@ -1,6 +1,7 @@
-# @sea-code-labs | @sea-code-themes/colors
+## @sea-code-themes/colors
 
-### Frameworks: [ Angular ]
+## Frameworks:
+### [ Angular ]
 
 ## Introduction
 
@@ -86,11 +87,7 @@ constructor(private themeService: ThemeService) {
 - The service uses sessionStorage to persist the theme across page reloads.
 - If you want to add more themes, ensure they follow the same Theme interface structure.
 
----
-
-## Light Mode
-
-###
+## Default Light Theme
 
 | Attribute                             | HEX                         |
 | ------------------------------------- | --------------------------- |
@@ -150,11 +147,7 @@ constructor(private themeService: ThemeService) {
 | `color-danger-ghost`                  | `rgba(134, 61, 56, 0.25)`   |
 | `color-danger-ghost-text-contrast`    | `#592926`                   |
 
-###
-
-## Dark Mode
-
-###
+## Default Dark Theme
 
 | Attribute                             | HEX                         |
 | ------------------------------------- | --------------------------- |
@@ -214,9 +207,7 @@ constructor(private themeService: ThemeService) {
 | `color-danger-ghost`                  | `rgba(248, 113, 104, 0.25)` |
 | `color-danger-ghost-text-contrast`    | `#fa9c95`                   |
 
----
-
-### Documentation
+## Documentation
 
 For detailed information about this library,
 visit [documentation](https://seacodelabs.atlassian.net/wiki/external/NTkxMWY4MmE2NGE5NDdiYzlmN2I3NWUxNzlhNzExM2I).
