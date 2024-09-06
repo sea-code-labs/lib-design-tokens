@@ -14,31 +14,21 @@ export class ThemeService {
     this.applyUserPreferredTheme();
   }
 
-  /**
-   * Applies the specified theme to the application and saves it in sessionStorage.
-   * @param theme The theme to apply.
-   */
   public applyTheme(theme: Theme): void {
     this.setCSSVariables(theme.colors);
     this.saveThemeToSessionStorage(theme);
   }
 
-  /**
-   * Sets the user's preferred theme, applies it,
-   * and saves the preference in sessionStorage.
-   * @param themeName The name of the theme to apply (e.g., 'dark' or 'light').
-   */
-  public setUserPreferredTheme(themeName: string): void {
-    const theme: Theme = themeName === defaultDarkTheme.name ? defaultDarkTheme : defaultLightTheme;
-    this.applyTheme(theme);
-    sessionStorage.setItem(this.themeKey, theme.name);
+  public setUserPreferredTheme(): void {
+    const savedTheme: Theme | null = this.getThemeFromSessionStorage();
+
+    if (savedTheme) {
+      this.applyTheme(savedTheme);
+    } else {
+      this.applyUserPreferredTheme();
+    }
   }
 
-  /**
-   * Converts the provided theme colors into CSS variables
-   * and applies them to the root element of the document.
-   * @param colors A map of color variables to be applied.
-   */
   private setCSSVariables(colors: Theme['colors']): void {
     const root: HTMLElement = document.documentElement;
     Object.keys(colors).forEach((key: keyof Theme['colors']): void => {
@@ -46,28 +36,28 @@ export class ThemeService {
     });
   }
 
-  /**
-   * Applies the user's preferred theme based on saved preferences,
-   * system settings, or falls back to a default theme.
-   */
   private applyUserPreferredTheme(): void {
-    const savedTheme: string | null = sessionStorage.getItem(this.themeKey);
-
-    if (savedTheme) {
-      const theme: Theme = savedTheme === defaultDarkTheme.name ? defaultDarkTheme : defaultLightTheme;
-      this.applyTheme(theme);
-    } else {
-      const prefersDark: boolean = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme: Theme = prefersDark ? defaultDarkTheme : defaultLightTheme;
-      this.applyTheme(theme);
-    }
+    const savedTheme: Theme | null = this.getThemeFromSessionStorage();
+    const theme: Theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? defaultDarkTheme : defaultLightTheme);
+    this.applyTheme(theme);
   }
 
-  /**
-   * Saves the current theme name to sessionStorage.
-   * @param theme The theme to save in sessionStorage.
-   */
+  private getThemeFromSessionStorage(): Theme | null {
+    const themeJSON: string | null = sessionStorage.getItem(this.themeKey);
+
+    if (themeJSON) {
+      try {
+        return JSON.parse(themeJSON) as Theme;
+      } catch (e) {
+        console.error('Failed to parse theme from sessionStorage:', e);
+        return null;
+      }
+    }
+
+    return null;
+  }
+
   private saveThemeToSessionStorage(theme: Theme): void {
-    sessionStorage.setItem(this.themeKey, theme.name);
+    sessionStorage.setItem(this.themeKey, JSON.stringify(theme));
   }
 }
