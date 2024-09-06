@@ -22,7 +22,8 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "colors": ["./dist/colors"]
+      "colors": ["./dist/colors"],
+      "spacing": ["./dist/spacing"]
     }
   },
   "angularCompilerOptions": {
