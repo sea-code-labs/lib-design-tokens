@@ -1,6 +1,8 @@
 ## @sea-code-themes/colors
 
-### Frameworks: [ Angular ]
+## Frameworks:
+
+[ Angular ]
 
 ## Introduction
 

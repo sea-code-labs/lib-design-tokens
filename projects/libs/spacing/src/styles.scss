@@ -7,7 +7,19 @@ $spacing-tokens: (
   5: 16px,
   6: 20px,
   7: 24px,
-  8: 28px,
+  8: 32px,
+  9: 40px,
+  10: 48px,
+  11: 64px,
+  12: 80px,
+  13: 96px,
+  14: 128px,
+  15: 160px,
+  16: 196px,
+  17: 256px,
+  18: 320px,
+  19: 392px,
+  20: 512px,
 );
 
 @function spacing($token) {
