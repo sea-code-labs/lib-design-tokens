@@ -225,6 +225,7 @@ pipelines:
                 ng build --configuration production
                 cd ../../../ || exit
                 cd "dist/$(basename "$lib")" || exit
+                npm version prerelease --preid=dev --no-git-tag-version
                 npm publish --access public --tag dev
 
                 cd - || exit
@@ -290,6 +291,7 @@ pipelines:
                 ng build --configuration production
                 cd "../../../" || exit
                 cd "dist/$(basename "$lib")" || exit
+                npm version patch --no-git-tag-version
                 npm publish --access public
 
                 cd - || exit
