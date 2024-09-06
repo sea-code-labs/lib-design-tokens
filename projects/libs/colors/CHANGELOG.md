@@ -8,6 +8,14 @@
 
 ###
 
+### **--- 2024-09-06 || 2.0.3 ---**
+
+### **Changes**
+
+- New color variables and simpler service
+
+###
+
 ### **--- 2024-09-05 || 2.0.1 ---**
 
 ### **Changes**

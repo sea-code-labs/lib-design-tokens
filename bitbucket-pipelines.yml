@@ -153,15 +153,19 @@ pipelines:
               find projects/libs -maxdepth 1 -mindepth 1 -type d | while read -r lib; do
                 [ -f "$lib/package.json" ] || continue
                 cd "$lib" || exit
-                npm install
-                ng build --configuration production
-                cd ../../../ || exit
-                cd "dist/$(basename "$lib")" || exit
-                npm version prerelease --preid=dev --no-git-tag-version
-                npm publish --access public --tag dev
+                if git diff --quiet HEAD^ HEAD --; then
+                  echo "No changes detected in $(basename "$lib")"
+                else
+                  npm install
+                  ng build --configuration production
+                  cd ../../../ || exit
+                  cd "dist/$(basename "$lib")" || exit
+                  npm version prerelease --preid=dev --no-git-tag-version
+                  npm publish --access public --tag dev
 
-                cd - || exit
-                sleep 10
+                  cd - || exit
+                  sleep 10
+                fi
               done
 
     main:
@@ -213,13 +217,17 @@ pipelines:
               find projects/libs -maxdepth 1 -mindepth 1 -type d | while read -r lib; do
                 [ -f "$lib/package.json" ] || continue
                 cd "$lib" || exit
-                npm install
-                ng build --configuration production
-                cd "../../../" || exit
-                cd "dist/$(basename "$lib")" || exit
-                npm version patch --no-git-tag-version
-                npm publish --access public
+                if git diff --quiet HEAD^ HEAD --; then
+                  echo "No changes detected in $(basename "$lib")"
+                else
+                  npm install
+                  ng build --configuration production
+                  cd "../../../" || exit
+                  cd "dist/$(basename "$lib")" || exit
+                  npm version patch --no-git-tag-version
+                  npm publish --access public
 
-                cd - || exit
-                sleep 10
+                  cd - || exit
+                  sleep 10
+                fi
               done
