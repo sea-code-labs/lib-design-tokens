@@ -1,0 +1,8 @@
+{
+  "name": "@sea-code-themes/spacing",
+  "version": "1.0.0-dev.0",
+  "dependencies": {
+    "tslib": "~2.7.0"
+  },
+  "sideEffects": false
+}

@@ -33,6 +33,29 @@
           }
         }
       }
+    },
+    "spacing": {
+      "projectType": "library",
+      "root": "projects/libs/spacing",
+      "sourceRoot": "projects/libs/spacing/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/libs/spacing/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/libs/spacing/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/libs/spacing/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
     }
   }
 }
