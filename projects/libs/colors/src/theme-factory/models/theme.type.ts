@@ -70,5 +70,7 @@ export interface Theme {
     'color-danger-text-contrast': string;
     'color-danger-ghost': string;
     'color-danger-ghost-text-contrast': string;
+
+    [key: string]: string;
   };
 }

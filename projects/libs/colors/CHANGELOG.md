@@ -13,6 +13,7 @@
 ### **Changes**
 
 - New color variables and simpler service
+- Possibility of additional properties in Theme model
 
 ###
 
