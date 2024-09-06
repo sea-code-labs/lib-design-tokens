@@ -1,6 +1,6 @@
 {
   "name": "@sea-code-themes/colors",
-  "version": "2.0.4",
+  "version": "2.0.5-dev.0",
   "dependencies": {
     "tslib": "~2.7.0"
   },
