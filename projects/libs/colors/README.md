@@ -1,8 +1,13 @@
-# @sea-code-themes/colors - Angular
+# @sea-code-labs | @sea-code-themes/colors
 
-The @sea-code-themes/colors Angular library is designed to offer a flexible and efficient way to manage color themes across your digital products. It provides the ability to define and customize themes, including all necessary shades for various color categories, and allows for seamless theme switching within your application. Below, you'll find an explanation of how to implement and use the theme management function effectively.
+### Frameworks: [ Angular ]
 
----
+## Introduction
+
+The @sea-code-themes/colors library is designed to offer a flexible and efficient way to manage color
+themes across your digital products. It provides the ability to define and customize themes, including
+all necessary shades for various color categories, and allows for seamless theme switching within your application.
+Below, you'll find an explanation of how to implement and use the theme management function effectively.
 
 ## Installation
 
@@ -17,6 +22,8 @@ npm install @sea-code-themes/colors
 2. Add the library styles to your project:
 
 ```
+[ Angular ]
+
 "styles": [
   "node_modules/@sea-code-themes/colors/styles.scss"
 ],
@@ -41,6 +48,8 @@ npm install @sea-code-themes/colors
 2. When the service is instantiated (e.g., on application start), it automatically applies the user’s preferred theme based on saved preferences in sessionStorage. If no preference is found, it falls back to the system's color scheme preference (dark or light).
 
 ```
+[ Angular ]
+
 import { ThemeService } from '@sea-code-themes/colors';
 
 constructor(private themeService: ThemeService) {
@@ -51,6 +60,8 @@ constructor(private themeService: ThemeService) {
 3. To set and save a user-preferred theme (e.g., 'dark' or 'light'), use the setUserPreferredTheme method. The theme will be applied and saved in sessionStorage.
 
 ```
+[ Angular ]
+
 import { ThemeService } from '@sea-code-themes/colors';
 
 constructor(private themeService: ThemeService) {
@@ -61,6 +72,8 @@ constructor(private themeService: ThemeService) {
 4. To apply a specific theme in any place of application, call the applyTheme method on the ThemeService instance. This method also saves the theme in sessionStorage.
 
 ```
+[ Angular ]
+
 import { ThemeService, Themes } from '@sea-code-themes/colors';
 
 constructor(private themeService: ThemeService) {
@@ -68,16 +81,16 @@ constructor(private themeService: ThemeService) {
 }
 ```
 
----
-
 ## Notes
 
 - The service uses sessionStorage to persist the theme across page reloads.
-- If you want to add more themes, ensure they follow the same Theme interface structure and update the service methods accordingly.
+- If you want to add more themes, ensure they follow the same Theme interface structure.
 
 ---
 
 ## Light Mode
+
+###
 
 | Attribute                             | HEX                         |
 | ------------------------------------- | --------------------------- |
@@ -137,7 +150,11 @@ constructor(private themeService: ThemeService) {
 | `color-danger-ghost`                  | `rgba(134, 61, 56, 0.25)`   |
 | `color-danger-ghost-text-contrast`    | `#592926`                   |
 
+###
+
 ## Dark Mode
+
+###
 
 | Attribute                             | HEX                         |
 | ------------------------------------- | --------------------------- |
@@ -199,7 +216,7 @@ constructor(private themeService: ThemeService) {
 
 ---
 
-### Description
+### Documentation
 
 For detailed information about this library,
 visit [documentation](https://seacodelabs.atlassian.net/wiki/external/NTkxMWY4MmE2NGE5NDdiYzlmN2I3NWUxNzlhNzExM2I).
