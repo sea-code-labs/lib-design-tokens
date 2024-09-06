@@ -1,6 +1,8 @@
 ## @sea-code-themes/spacing
 
-### Frameworks: [ Angular ]
+## Frameworks: 
+
+[ Angular ]
 
 ## Introduction
 
