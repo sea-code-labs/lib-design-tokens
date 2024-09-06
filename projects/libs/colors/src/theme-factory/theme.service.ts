@@ -48,8 +48,7 @@ export class ThemeService {
     if (themeJSON) {
       try {
         return JSON.parse(themeJSON) as Theme;
-      } catch (e) {
-        console.error('Failed to parse theme from sessionStorage:', e);
+      } catch {
         return null;
       }
     }
