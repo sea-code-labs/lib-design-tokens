@@ -147,9 +147,8 @@ pipelines:
           script:
             - npm config set @sea-code-themes:registry https://registry.npmjs.org/
             - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-            - npm install -g @angular/cli semver
+            - npm install -g @angular/cli
             - npm install
-            - apt-get update && apt-get install -y jq
             - |
               find projects/libs -maxdepth 1 -mindepth 1 -type d | while read -r lib; do
                 [ -f "$lib/package.json" ] || continue
@@ -208,7 +207,6 @@ pipelines:
           script:
             - npm config set @sea-code-themes:registry https://registry.npmjs.org/
             - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-            - apt-get update && apt-get install -y jq
             - npm install
             - npm install -g @angular/cli
             - |
