@@ -34,14 +34,14 @@ npm install @sea-code-themes/colors
 ```
 {
   color: var(--color-primary);
-  background-color: rgba(var(--color-surface-a), 0.8);
+  background-color: rgba(from var(--color-primary-text-contrast) r g b / 0.8);
 }
 ```
 
 2. When the service is instantiated (e.g., on application start), it automatically applies the user’s preferred theme based on saved preferences in sessionStorage. If no preference is found, it falls back to the system's color scheme preference (dark or light).
 
 ```
-import { ThemeService } from './path/to/theme.service';
+import { ThemeService } from '@sea-code-themes/colors';
 
 constructor(private themeService: ThemeService) {
   // Automatically applies the user's preferred theme or system default.
@@ -51,22 +51,20 @@ constructor(private themeService: ThemeService) {
 3. To set and save a user-preferred theme (e.g., 'dark' or 'light'), use the setUserPreferredTheme method. The theme will be applied and saved in sessionStorage.
 
 ```
-import { ThemeService } from './path/to/theme.service';
-import { defaultDarkTheme } from './path/to/defaultDarkTheme';
+import { ThemeService } from '@sea-code-themes/colors';
 
 constructor(private themeService: ThemeService) {
-  this.themeService.setUserPreferredTheme(defaultDarkTheme.name);
+  this.themeService.setUserPreferredTheme();
 }
 ```
 
 4. To apply a specific theme in any place of application, call the applyTheme method on the ThemeService instance. This method also saves the theme in sessionStorage.
 
 ```
-import { ThemeService } from './path/to/theme.service';
-import { defaultLightTheme } from './path/to/themes/defaultLightTheme';
+import { ThemeService, Themes } from '@sea-code-themes/colors';
 
 constructor(private themeService: ThemeService) {
-  this.themeService.applyTheme(defaultLightTheme);
+  this.themeService.applyTheme(Themes.defaultLightTheme);
 }
 ```
 
