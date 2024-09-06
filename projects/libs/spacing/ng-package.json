@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/spacing",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": ["src"]
+  },
+  "assets": [
+    {
+      "glob": "styles.scss",
+      "input": "src",
+      "output": "./"
+    }
+  ]
+}

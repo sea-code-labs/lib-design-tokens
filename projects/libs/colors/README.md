@@ -1,10 +1,6 @@
 ## @sea-code-themes/colors
-  
-  
 
 ### Frameworks: [ Angular ]
-  
-  
 
 ## Introduction
 
@@ -12,8 +8,6 @@ The @sea-code-themes/colors library is designed to offer a flexible and efficien
 themes across your digital products. It provides the ability to define and customize themes, including
 all necessary shades for various color categories, and allows for seamless theme switching within your application.
 Below, you'll find an explanation of how to implement and use the theme management function effectively.
-  
-  
 
 ## Installation
 
@@ -39,8 +33,6 @@ npm install @sea-code-themes/colors
   ]
 },
 ```
-  
-  
 
 ## Usage
 
@@ -88,15 +80,11 @@ constructor(private themeService: ThemeService) {
   this.themeService.applyTheme(Themes.defaultLightTheme);
 }
 ```
-  
-  
 
 ## Notes
 
 - The service uses sessionStorage to persist the theme across page reloads.
 - If you want to add more themes, ensure they follow the same Theme interface structure.
-  
-  
 
 ## Default Light Theme
 
@@ -157,8 +145,6 @@ constructor(private themeService: ThemeService) {
 | `color-danger-text-contrast`          | `#ffffff`                   |
 | `color-danger-ghost`                  | `rgba(134, 61, 56, 0.25)`   |
 | `color-danger-ghost-text-contrast`    | `#592926`                   |
-  
-  
 
 ## Default Dark Theme
 
@@ -219,8 +205,6 @@ constructor(private themeService: ThemeService) {
 | `color-danger-text-contrast`          | `#000000`                   |
 | `color-danger-ghost`                  | `rgba(248, 113, 104, 0.25)` |
 | `color-danger-ghost-text-contrast`    | `#fa9c95`                   |
-  
-  
 
 ## Documentation
 
