@@ -1,6 +1,6 @@
-# @sea-code-themes/colors
+# @sea-code-themes/colors - Angular
 
-The @sea-code-themes/colors library is designed to offer a flexible and efficient way to manage color themes across your digital products. It provides the ability to define and customize themes, including all necessary shades for various color categories, and allows for seamless theme switching within your application. Below, you'll find an explanation of how to implement and use the theme management function effectively.
+The @sea-code-themes/colors Angular library is designed to offer a flexible and efficient way to manage color themes across your digital products. It provides the ability to define and customize themes, including all necessary shades for various color categories, and allows for seamless theme switching within your application. Below, you'll find an explanation of how to implement and use the theme management function effectively.
 
 ---
 
