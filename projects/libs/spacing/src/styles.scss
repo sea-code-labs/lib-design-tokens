@@ -1,25 +1,45 @@
 $spacing-tokens: (
-  0: 1px,
-  1: 2px,
-  2: 4px,
-  3: 8px,
-  4: 12px,
-  5: 16px,
-  6: 20px,
-  7: 24px,
-  8: 32px,
-  9: 40px,
-  10: 48px,
-  11: 64px,
-  12: 80px,
-  13: 96px,
-  14: 128px,
-  15: 160px,
-  16: 196px,
-  17: 256px,
-  18: 320px,
-  19: 392px,
-  20: 512px,
+  0: 0.0625rem,
+  // 1px / 16
+  1: 0.125rem,
+  // 2px / 16
+  2: 0.25rem,
+  // 4px / 16
+  3: 0.5rem,
+  // 8px / 16
+  4: 0.75rem,
+  // 12px / 16
+  5: 1rem,
+  // 16px / 16
+  6: 1.25rem,
+  // 20px / 16
+  7: 1.5rem,
+  // 24px / 16
+  8: 2rem,
+  // 32px / 16
+  9: 2.5rem,
+  // 40px / 16
+  10: 3rem,
+  // 48px / 16
+  11: 4rem,
+  // 64px / 16
+  12: 5rem,
+  // 80px / 16
+  13: 6rem,
+  // 96px / 16
+  14: 8rem,
+  // 128px / 16
+  15: 10rem,
+  // 160px / 16
+  16: 12.25rem,
+  // 196px / 16
+  17: 16rem,
+  // 256px / 16
+  18: 20rem,
+  // 320px / 16
+  19: 24.5rem,
+  // 392px / 16
+  20: 32rem // 512px / 16,,
 );
 
 @function spacing($token) {
@@ -41,5 +61,3 @@ $spacing-tokens: (
     }
   }
 }
-
-@include set-css-variables($spacing-tokens);
