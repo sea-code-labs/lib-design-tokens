@@ -1,4 +1,4 @@
-# @sea-code-labs | Lib Design Tokens
+# Lib Design Tokens
 
 ## Introduction
 
