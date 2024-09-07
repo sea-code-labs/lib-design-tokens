@@ -56,6 +56,29 @@
           "defaultConfiguration": "production"
         }
       }
+    },
+    "typography": {
+      "projectType": "library",
+      "root": "projects/libs/typography",
+      "sourceRoot": "projects/libs/typography/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/libs/typography/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/libs/typography/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/libs/typography/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
     }
   }
 }

@@ -23,7 +23,8 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "colors": ["./dist/colors"],
-      "spacing": ["./dist/spacing"]
+      "spacing": ["./dist/spacing"],
+      "typography": ["./dist/typography"]
     }
   },
   "angularCompilerOptions": {

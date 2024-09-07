@@ -1,5 +1,5 @@
 {
-  "name": "@sea-code-themes/spacing",
+  "name": "@sea-code-themes/typography",
   "version": "3.0.0-dev.0",
   "dependencies": {
     "tslib": "~2.7.0"

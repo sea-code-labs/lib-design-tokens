@@ -1,0 +1,944 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+$typography-tokens: (
+  // Inline code snippets and smaller code elements.
+  code-1:
+    (
+      font-family: (
+        'JetBrains Mono',
+        monospace,
+      ),
+      font-size: 0.75rem,
+      line-height: 1rem,
+      font-weight: 400,
+      letter-spacing: 0.35px,
+    ),
+
+  // Large code snippets and larger code elements.
+  code-2:
+    (
+      font-family: (
+        'JetBrains Mono',
+        monospace,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.25rem,
+      font-weight: 400,
+      letter-spacing: 0.35px,
+    ),
+
+  // Field labels in components, error messages, and captions.
+  // It should not be used for body copy.
+  label-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.75rem,
+      line-height: 1rem,
+      font-weight: 400,
+      letter-spacing: 0.35px,
+    ),
+
+  // Field labels in components, error messages, and captions.
+  // It should not be used for body copy.
+  label-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.125rem,
+      font-weight: 400,
+      letter-spacing: 0.2px,
+    ),
+
+  // Explanatory helper text that appears below a field title within a component.
+  helper-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.75rem,
+      line-height: 1rem,
+      font-weight: 400,
+      letter-spacing: 0.35px,
+    ),
+
+  // Explanatory helper text that appears below a field title within a component.
+  helper-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.125rem,
+      font-weight: 400,
+      letter-spacing: 0.2px,
+    ),
+
+  // Legal copy appearing in product pages.
+  legal-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.75rem,
+      line-height: 1rem,
+      font-weight: 400,
+      letter-spacing: 0.35px,
+    ),
+
+  // Legal copy appearing in product pages.
+  legal-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.125rem,
+      font-weight: 400,
+      letter-spacing: 0.2px,
+    ),
+
+  // Short paragraphs with no more than four lines and is commonly used in components.
+  body-compact-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.125rem,
+      font-weight: 400,
+      letter-spacing: 0.2px,
+    ),
+
+  // Short paragraphs with no more than four lines and is commonly used in components.
+  body-compact-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1rem,
+      line-height: 1.375rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Slightly taller line height than body-compact-1, this body style is used in productive layouts
+  // for long paragraphs with more than four lines. Use also for longer body copy in components
+  // such as accordion or structured list. It is always left-aligned. Body-long-01 can also be used
+  // for productive moments within expressive experiences.
+  body-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.25rem,
+      font-weight: 400,
+      letter-spacing: 0.2px,
+    ),
+
+  // Slightly taller line height than body-compact-2, this style is commonly used in expressive layouts
+  // for long paragraphs with four lines or more. It is always left-aligned.
+  body-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1rem,
+      line-height: 1.5rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings. It pairs with body-compact-1.
+  heading-compact-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.125rem,
+      font-weight: 600,
+      letter-spacing: 0.2px,
+    ),
+
+  // Smaller layout headings. It pairs with body-compact-2.
+  heading-compact-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1rem,
+      line-height: 1.375rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings. It pairs with body-1.
+  heading-1:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 0.875rem,
+      line-height: 1.25rem,
+      font-weight: 600,
+      letter-spacing: 0.2px,
+    ),
+
+  // Smaller layout headings. It pairs with body-2.
+  heading-2:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1rem,
+      line-height: 1.5rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings.
+  heading-3:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.25rem,
+      line-height: 1.75rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  heading-4:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.75rem,
+      line-height: 2.25rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  heading-5:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2rem,
+      line-height: 2.5rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  heading-6:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  heading-7:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.375rem,
+      line-height: 4rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings.
+  fluid-heading-3-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.25rem,
+      line-height: 1.75rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings.
+  fluid-heading-3-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.25rem,
+      line-height: 1.75rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings.
+  fluid-heading-3-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.25rem,
+      line-height: 1.75rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings.
+  fluid-heading-3-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.25rem,
+      line-height: 1.75rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Component and layout headings.
+  fluid-heading-3-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.5rem,
+      line-height: 1.75rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-4-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.75rem,
+      line-height: 2.25rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-4-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.75rem,
+      line-height: 2.25rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-4-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.75rem,
+      line-height: 2.25rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-4-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2rem,
+      line-height: 2.5rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-4-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2rem,
+      line-height: 2.5rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-5-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2rem,
+      line-height: 2.5rem,
+      font-weight: 400,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-5-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.25rem,
+      line-height: 2.75rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-5-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-5-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3rem,
+      line-height: 3.5rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-5-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.75rem,
+      line-height: 4.375rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-6-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2rem,
+      line-height: 2.5rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-6-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.25rem,
+      line-height: 2.75rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-6-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-6-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3rem,
+      line-height: 3.5rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Layout headings.
+  fluid-heading-6-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.75rem,
+      line-height: 4.375rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Larger paragraphs of type that are usually three or more lines in length.
+  fluid-paragraph-1-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.5rem,
+      line-height: 1.875rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Larger paragraphs of type that are usually three or more lines in length.
+  fluid-paragraph-1-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.5rem,
+      line-height: 1.875rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Larger paragraphs of type that are usually three or more lines in length.
+  fluid-paragraph-1-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.75rem,
+      line-height: 2.25rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Larger paragraphs of type that are usually three or more lines in length.
+  fluid-paragraph-1-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 1.75rem,
+      line-height: 2.25rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Larger paragraphs of type that are usually three or more lines in length.
+  fluid-paragraph-1-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2rem,
+      line-height: 2.5rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-1-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-1-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-1-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.375rem,
+      line-height: 4rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-1-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.75rem,
+      line-height: 4.375rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-1-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 4.75rem,
+      line-height: 5.375rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-2-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-2-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-2-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.375rem,
+      line-height: 4rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-2-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.75rem,
+      line-height: 4.375rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-2-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 4.75rem,
+      line-height: 5.375rem,
+      font-weight: 600,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-3-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-3-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.375rem,
+      line-height: 4rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-3-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 3.75rem,
+      line-height: 4.375rem,
+      font-weight: 300,
+      letter-spacing: -0.5px,
+    ),
+
+  // Display.
+  fluid-display-3-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 4.75rem,
+      line-height: 5.375rem,
+      font-weight: 300,
+      letter-spacing: -0.5px,
+    ),
+
+  // Display.
+  fluid-display-3-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 5.25rem,
+      line-height: 5.875rem,
+      font-weight: 300,
+      letter-spacing: -1px,
+    ),
+
+  // Display.
+  fluid-display-4-sm:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 2.625rem,
+      line-height: 3.125rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-4-md:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 4.25rem,
+      line-height: 4.875rem,
+      font-weight: 300,
+      letter-spacing: 0px,
+    ),
+
+  // Display.
+  fluid-display-4-lg:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 5.75rem,
+      line-height: 6.375rem,
+      font-weight: 300,
+      letter-spacing: -0.5px,
+    ),
+
+  // Display.
+  fluid-display-4-xl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 7.625rem,
+      line-height: 8.125rem,
+      font-weight: 300,
+      letter-spacing: -0.5px,
+    ),
+
+  // Display.
+  fluid-display-4-xxl:
+    (
+      font-family: (
+        'Montserrat',
+        sans-serif,
+      ),
+      font-size: 9.75rem,
+      line-height: 10.25rem,
+      font-weight: 300,
+      letter-spacing: -1px,
+    )
+);
+
+@function get-typography($token, $property) {
+  @if map-has-key($typography-tokens, $token) {
+    $typography-map: map-get($typography-tokens, $token);
+
+    @if map-has-key($typography-map, $property) {
+      $value: map-get($typography-map, $property);
+
+      @if $property == font-family and type-of($value) == list {
+        $result: '';
+        $first: true;
+
+        @each $item in $value {
+          @if $first {
+            $result: '#{$item}';
+            $first: false;
+          } @else {
+            $result:
+              #{$result},
+              #{$item};
+          }
+        }
+
+        @return $result;
+      }
+
+      @return $value;
+    } @else {
+      @error "Unknown typography property: #{$property}";
+    }
+  } @else {
+    @error "Unknown typography token: #{$token}";
+  }
+}
+
+@function to-css-variable($variable-name, $property) {
+  @return '--typography-#{$variable-name}-#{$property}';
+}
+
+@mixin set-typography-css-variables($typography-tokens) {
+  :root {
+    @each $key, $value in $typography-tokens {
+      @each $property, $val in $value {
+        @if $property == font-family and type-of($val) == list {
+          $result: '';
+          $first: true;
+
+          @each $item in $val {
+            @if $first {
+              $result: '#{$item}';
+              $first: false;
+            } @else {
+              $result:
+                #{$result},
+                #{$item};
+            }
+          }
+
+          #{to-css-variable($key, $property)}: $result;
+        } @else {
+          #{to-css-variable($key, $property)}: #{$val};
+        }
+      }
+    }
+  }
+}
+
+@include set-typography-css-variables($typography-tokens);
+
+@mixin apply-type($token) {
+  font-family: get-typography($token, font-family);
+  font-size: get-typography($token, font-size);
+  font-weight: get-typography($token, font-weight);
+  line-height: get-typography($token, line-height);
+  letter-spacing: get-typography($token, letter-spacing);
+}
