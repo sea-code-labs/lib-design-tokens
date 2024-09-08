@@ -10,12 +10,9 @@ The @sea-code-themes/spacing library is designed to offer a flexible and efficie
 to manage spacing across your digital products. It provides access to a set of predefined CSS variables
 and SCSS functions that retrieve these values, ensuring consistent spacing across your application.
 The library covers all necessary sizes for various layout categories, allowing you to utilize
-standardized spacing without needing to customize the values. Below, you'll find an explanation
-of how to implement and use the spacing management functions effectively.
+standardized spacing without needing to customize the values.
 
 ## Installation
-
-To use the color palette in your project, follow these steps:
 
 1. Install via npm:
 
