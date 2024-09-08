@@ -11,12 +11,9 @@ to manage typography across your digital products. It provides access to a set o
 CSS variables and SCSS functions that retrieve these values, ensuring consistent typography
 across your application. The library covers all necessary font sizes, weights, and line heights
 for various text elements, allowing you to utilize standardized typography without needing
-to customize the values. Below, you'll find an explanation of how to implement and use the typography
-management functions effectively.
+to customize the values.
 
 ## Installation
-
-To use the color palette in your project, follow these steps:
 
 1. Install via npm:
 
